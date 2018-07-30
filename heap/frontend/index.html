@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Heap</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href='/css/app.css'/>
+    </head>
+    <body>
+        <div>
+            <span>Selecione o tipo da heap: </span>
+            <select id="heap-type">
+                <option value="1" selected>
+                    Max Heap
+                </option>
+                <option value="">
+                    Min Heap
+                </option>
+            </select>
+        </div>
+        <div>
+            <form id="insert" onsubmit="event.preventDefault(); insert();">
+                <p>Inserir ou extrair elemento</p>
+                <span>Insira um elemento: </span>
+                <input name="element" type="number" placeholder="Insira um número..." required/>
+                <button type="submit">Inserir</button>
+            </form>
+            <button onclick="extract()">extract</button>
+        </div>
+        <div>
+            <form id="build" onsubmit="event.preventDefault(); buildHeap();">
+                <p>Gerar Heap a partir de uma lista</p>
+                <span>Insira os elementos:</span>
+                <input name="elements" type="text" placeholder="Ex: 1,2,3,4,5,6,7,8" required/>
+                <button type="submit">Build</button>
+            </form>
+        </div>
+        <div id="heap">
+            <p>Heap gerada</p>
+            <p id="generated">HEAP: </p>
+            <p id="extract"></p>
+        </div>
+        <script src="/js/app.js"></script>
+    </body>
+</html>
