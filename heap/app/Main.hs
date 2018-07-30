@@ -4,7 +4,7 @@ module Main where
 import Web.Scotty
 import Data.Monoid ((<>))
 import Data.Text
-import Heap (swap)
+import HeapModule (swap, Heap(..), Comparator(..), Comparable(..), buildHeap)
 import Data.Aeson (ToJSON, toJSON, (.=), object)
 
 data Teste = Teste {x :: [Char], y :: Int}
@@ -12,10 +12,13 @@ data Teste = Teste {x :: [Char], y :: Int}
 instance ToJSON Teste where
   toJSON (Teste x y) = object ["x" .= x, "y" .= y]
 
+instance ToJSON (Heap m) where
+  toJSON heap = object ["heap" .= (heapList heap)]
+
 routes :: ScottyM ()
 routes = do
   get "/hello" $ do
-    json (toJSON (Teste (swap ['a'..'z'] 3 14) 4))
+    json (toJSON (buildHeap (Comparator compareMax) [1..10]))
   get "/teste/:name" $ do
     name <- param "name"
     addHeader "Access-Control-Allow-Origin" "http://localhost:8000"
