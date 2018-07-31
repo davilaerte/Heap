@@ -62,7 +62,7 @@ class (Comparable a) => HeapI a where
     extracts :: (Heap a) -> [a]
     heapSort :: [a] -> (Comparator a) -> [a]
     
-    heapFy heap i | i /= maior = heapFy (Heap (comparator heap) (swap (heapList heap) i heapFyAux)) maior -- Poderia trocar o heapFyAux pelo maior ?
+    heapFy heap i | i /= maior = heapFy (Heap (comparator heap) (swap (heapList heap) i maior)) maior
                   | otherwise = heap
         where dir = right i
               esq = left i
